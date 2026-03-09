@@ -2,1362 +2,510 @@
   {
     "id": 1,
     "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "在 Cursor 中，'Composer' 模式与普通 'Chat' 模式的主要区别是什么？",
+    "category": "理论题-红线规则",
+    "question": "研发同学排查线上问题时，以下哪种做法符合红线1要求？",
     "options": [
-      "Composer 只能修改单个文件，而 Chat 可以修改多个",
-      "Composer 具备多文件编辑能力，并能根据意图自动创建或修改整个模块",
-      "Composer 仅支持 Claude 模型，而 Chat 支持所有模型",
-      "Composer 是收费功能，而 Chat 是完全免费的"
+      "把线上用户订单明细直接贴给AI分析",
+      "把包含手机号的日志整段粘贴给AI",
+      "先做脱敏或构造模拟数据，再让AI协助分析",
+      "把数据库导出后发到个人AI账号"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Cursor 的 Composer 模式（Cmd+I）是一个真正的 Agent 模式，它能够跨多个文件进行协同编辑，执行复杂的架构级任务，而 Chat 模式更多侧重于对话和单文件建议。"
+    "answer": [2],
+    "explanation": "红线1禁止输入生产真实数据。任何涉及真实用户隐私、订单明细的内容必须经过彻底脱敏或使用构造的模拟数据。"
   },
   {
     "id": 2,
     "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "字节跳动推出的 Trae 编辑器中，'Builder' 模式的核心定位是什么？",
+    "category": "理论题-红线规则",
+    "question": "以下哪项属于红线2明确禁止输入AI工具的内容？",
     "options": [
-      "仅用于代码补全的 Tab 增强版",
-      "一个专门用于 UI 设计的画布工具",
-      "意图驱动的全自动开发模式，能够从 0 到 1 构建功能",
-      "用于替代 Git 的版本控制系统"
+      "公开开源项目的README",
+      "数据库连接串、API Key、Token或登录密码",
+      "通用算法的伪代码实现",
+      "不含敏感业务逻辑的测试用例"
     ],
-    "answer": [
-      2
-    ],
-    "explanation": "Trae 的 Builder 模式允许用户通过自然语言描述需求，由 AI 自动拆解任务、编写代码并运行，实现端到端的功能构建。"
+    "answer": [1],
+    "explanation": "红线2严禁输入任何凭证信息。这些信息一旦外泄，将导致系统面临直接的被入侵风险。"
   },
   {
     "id": 3,
     "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Windsurf 引入的 'Cascade' 推理引擎主要解决了什么问题？",
+    "category": "理论题-红线规则",
+    "question": "关于红线3“内部非公开业务逻辑”，以下做法错误的是？",
     "options": [
-      "减少了代码的行数",
-      "提升了复杂多步骤任务的自主执行和逻辑连贯性",
-      "让编辑器启动速度更快",
-      "自动翻译代码注释"
+      "询问AI如何实现一个通用的冒泡排序",
+      "将公司核心风控引擎的定价公式发给AI进行重构",
+      "描述一个抽象的业务场景寻求架构建议",
+      "让AI优化一段通用的字符串处理函数"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Cascade 是 Windsurf 的核心 Agent 推理引擎，它专注于在长链路、多文件的复杂开发流中保持高度的自主性和上下文连贯性。"
+    "answer": [1],
+    "explanation": "红线3禁止暴露非公开的核心业务规则。定价公式、风控策略属于公司核心机密，不得外发。"
   },
   {
     "id": 4,
-    "type": "multiple",
-    "category": "AI 编辑器深度对比",
-    "question": "以下关于 Cursor 代码库索引 (Indexing) 的描述，正确的有？",
-    "options": [
-      "它支持本地索引，确保隐私敏感代码不上传云端",
-      "索引可以帮助 AI 更好地理解全局函数调用和类定义",
-      "只有开启了索引，AI 才能进行多文件协同修改",
-      "索引完成后，AI 生成代码的幻觉率会显著降低"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "Cursor 的索引机制通过 Embedding 技术让 AI 具备全局视野。虽然不开启索引也能进行简单的多文件修改，但索引显著增强了 AI 对大型项目关联性的理解并减少了幻觉。"
+    "type": "boolean",
+    "category": "理论题-红线规则",
+    "question": "红线4规定，开发者可以使用任何个人习惯的AI工具（如个人版ChatGPT）处理公司代码，只要不保存即可。",
+    "options": ["正确", "错误"],
+    "answer": [1],
+    "explanation": "红线4要求必须使用公司批准、受控且可审计的AI渠道。严禁通过非授权渠道流转公司代码。"
   },
   {
     "id": 5,
     "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Google Antigravity 中 'Mission Control' 视图的主要作用是？",
+    "category": "理论题-红线规则",
+    "question": "根据红线5，AI生成的代码在上线前必须经过什么环节？",
     "options": [
-      "管理项目的 API 密钥",
-      "并行监控和干预多个正在运行的 AI Agent 任务",
-      "查看代码的编译错误日志",
-      "配置编辑器的颜色主题"
+      "只要AI自测通过即可直接上线",
+      "由AI再次进行自我审查",
+      "必须经过人工Code Review并确保符合质量与安全标准",
+      "只需在Readme中备注是AI生成的"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Mission Control 是 Antigravity 的杀手锏，它为开发者提供了一个宏观视角，可以同时观察多个 Agent 如何在项目中并行工作，并在关键节点进行人工确认或调整。"
+    "answer": [2],
+    "explanation": "红线5强调“人工兜底”。AI生成的代码可能存在幻觉或安全隐患，必须由人负责最终质量。"
   },
   {
     "id": 6,
-    "type": "boolean",
-    "category": "AI 编辑器深度对比",
-    "question": "Trae 编辑器相比 Cursor，在中文语境 and 国内开发生态（如微信小程序）上有更深度的优化。",
+    "type": "multiple",
+    "category": "理论题-红线规则",
+    "question": "以下哪些行为违反了红线6（禁止硬编码敏感配置）？",
     "options": [
-      "正确",
-      "错误"
+      "在代码中直接写入生产环境的IP地址",
+      "将测试环境的账号密码写在配置文件中并提交",
+      "使用配置中心（如Apollo/Nacos）读取密钥",
+      "在注释中记录了临时的数据库访问口令"
     ],
-    "answer": [
-      0
-    ],
-    "explanation": "作为国内推出的工具，Trae 在中文提示词理解、国内主流框架支持以及本土化开发习惯上做了针对性增强。"
+    "answer": [0, 1, 3],
+    "explanation": "红线6要求移除所有硬编码的敏感信息。任何形式的明文账号、密码、IP（非公开）都属于违规。"
   },
   {
     "id": 7,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "在 Windsurf 的 'Flow' 模式下，AI 采取行动（如运行命令或修改文件）时通常遵循什么原则？",
+    "type": "multiple",
+    "category": "理论题-红线规则",
+    "question": "以下哪些属于红线7禁止的“绕过安全机制”行为？",
     "options": [
-      "静默执行，不干扰用户",
-      "在执行任何破坏性操作前必须经过用户确认",
-      "只在用户离开编辑器时执行",
-      "每次只执行一行代码"
+      "为了方便调试，在代码中添加 @PermitAll 绕过权限校验",
+      "在生产代码中设置 verify=False 跳过 SSL 证书验证",
+      "使用 AI 自动修复 SQL 注入风险",
+      "临时关闭 CSRF 防护以解决跨域报错"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Flow 模式强调 '人机协同'，它会自动制定计划，但在运行 Shell 命令或大规模重构前会展示意图并等待用户确认。"
+    "answer": [0, 1, 3],
+    "explanation": "红线7严禁通过降低安全性来“跑通功能”。任何弱化现有安全防御的操作都是高危红线。"
   },
   {
     "id": 8,
-    "type": "multiple",
-    "category": "AI 编辑器深度对比",
-    "question": "主流 AI 编辑器（如 Cursor, Trae）通常通过哪些方式来获取代码上下文？",
-    "options": [
-      "读取当前打开的活跃文件",
-      "基于代码符号跳转追踪依赖关系",
-      "通过 RAG (检索增强生成) 扫描整个代码仓库",
-      "实时监听开发者的屏幕操作"
-    ],
-    "answer": [
-      0,
-      1,
-      2
-    ],
-    "explanation": "现代 AI 编辑器通过文件状态、符号分析和 RAG 技术构建上下文，但出于性能和隐私考虑，并不会（也不需要）实时监听屏幕操作。"
+    "type": "single",
+    "category": "理论题-红线规则",
+    "question": "红线8主要防范的风险是开源许可证的“传染性”，以下哪个协议最需要警惕？",
+    "options": ["MIT", "Apache 2.0", "GPL v3", "BSD"],
+    "answer": [2],
+    "explanation": "红线8关注合规性。GPL等传染性协议可能要求使用了该代码的项目也必须开源，对商业机密构成威胁。"
   },
   {
     "id": 9,
     "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "如果想在 Cursor 中强制要求 AI 遵循特定的编码规范（如统一使用 Tailwind 类名顺序），应该修改哪个文件？",
+    "category": "理论题-红线规则",
+    "question": "引入AI推荐的第三方依赖库时，红线9要求必须？",
     "options": [
-      ".gitignore",
-      "package.json",
-      ".cursorrules",
-      "README.md"
+      "直接安装使用，信任AI的推荐",
+      "只看下载量，不看许可证",
+      "进行人工审查，核验其许可证兼容性、安全漏洞及维护状态",
+      "让AI写一个免责声明"
     ],
-    "answer": [
-      2
-    ],
-    "explanation": ".cursorrules 是 Cursor 专门用于定义全局指令和项目规范的配置文件，AI 在生成代码时会优先参考其中的规则。"
+    "answer": [2],
+    "explanation": "红线9要求对AI引入的外部依赖进行安全与合规双重审计，防止供应链攻击。"
   },
   {
     "id": 10,
     "type": "boolean",
-    "category": "AI 编辑器深度对比",
-    "question": "Google Antigravity 的核心能力之一是其内置的 'Browser Agent'，它可以在真实浏览器中运行并调试前端应用。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "Browser Agent 允许 AI 直接在浏览器中进行端到端测试，观察渲染效果并根据实际报错自动修复前端代码。"
+    "category": "理论题-红线规则",
+    "question": "红线10要求：在使用AI辅助生成的代码用于专利申报或外部发表时，必须如实说明AI的使用情况。",
+    "options": ["正确", "错误"],
+    "answer": [0],
+    "explanation": "红线10涉及知识产权诚实性。不能将AI生成的内容虚假宣称为“完全原创”。"
   },
   {
     "id": 11,
     "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "MCP (Model Context Protocol) 协议诞生的核心目的是什么？",
+    "category": "理论题-流程规范",
+    "question": "“AI已经检查过了”可以作为跳过常规Code Review流程的理由吗？",
     "options": [
-      "为了让 AI 运行速度更快",
-      "建立一套标准，让不同的 AI 模型能以统一方式访问外部工具和数据源",
-      "用于替代现有的 HTTP 协议",
-      "专门用于加密代码传输"
+      "可以，AI比人更细心",
+      "不可以，AI检查不能替代公司制度要求的人工CR",
+      "只有在紧急修复时可以",
+      "只有前端代码可以"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "MCP 解决了 AI 工具集成的碎片化问题，通过标准化的接口，任何支持 MCP 的模型都可以无缝调用各种插件、数据库或搜索工具。"
+    "answer": [1],
+    "explanation": "红线11明确流程合规。AI是辅助工具，不能作为规避公司标准流程的借口。"
   },
   {
     "id": 12,
-    "type": "multiple",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "一个典型的 MCP 服务器可以向 AI 模型提供以下哪些能力？",
+    "type": "single",
+    "category": "理论题-流程规范",
+    "question": "红线12规定的“权限边界”是指？",
     "options": [
-      "Resources (如读取特定的文档或数据库记录)",
-      "Prompts (如预定义的复杂任务模版)",
-      "Tools (如执行 Git 命令或运行本地脚本)",
-      "Hardware (如直接控制 CPU 的时钟频率)"
+      "AI可以自动获得所有仓库的读取权限",
+      "AI工具的访问范围必须严格受限于个人已获得的合法授权",
+      "只要是公司内部项目，AI就可以跨权限访问",
+      "管理员可以授权AI代替自己进行所有操作"
     ],
-    "answer": [
-      0,
-      1,
-      2
-    ],
-    "explanation": "MCP 定义了 Resources, Prompts 和 Tools 三大核心抽象，但并不涉及底层的硬件频率控制。"
+    "answer": [1],
+    "explanation": "红线12禁止利用AI工具突破原有的权限隔离体系。工具不能成为越权访问的跳板。"
   },
   {
     "id": 13,
     "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "DeepSeek V4 中引入的 'Engram' 系统主要用于增强模型的哪种能力？",
+    "category": "理论题-流程规范",
+    "question": "核心应用发生AI辅助的重大变更时，红线13要求的关键动作是？",
     "options": [
-      "多语言翻译速度",
-      "长时记忆与项目级别的知识持久化",
-      "图片的生成质量",
-      "数学运算的精确度"
+      "偷偷合并，上线后再说",
+      "仅需通知同组同事",
+      "必须通知应用负责人并获得其对变更内容的显式确认",
+      "让AI写一封邮件给所有人"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Engram 系统类似于人类的大脑印迹，它允许模型在处理大型代码库时，通过一种更高效的记忆机制记住之前的决策和代码背景，而不受传统 Context Window 的严格限制。"
+    "answer": [2],
+    "explanation": "红线13强调责任归属。核心变更必须确保相关负责人知情并认可。"
   },
   {
     "id": 14,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "在 AI Agent 领域，'Skills' 通常是如何被 AI 调用的？",
-    "options": [
-      "AI 猜测函数名并尝试执行",
-      "通过 JSON Schema 描述的函数定义，由模型根据任务需求选择性触发",
-      "用户必须手动输入每一个 Skill 的完整代码",
-      "Skill 只能在 AI 联网时使用"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Skills 的核心是 '工具调用' (Tool Calling) 机制。AI 通过理解开发者提供的函数描述（通常是 JSON Schema 格式），判断当前步骤是否需要调用该工具，并自动生成正确的调用参数。"
+    "type": "boolean",
+    "category": "理论题-流程规范",
+    "question": "使用个人购买的付费Copilot账号处理公司内部业务代码，属于红线14违规行为。",
+    "options": ["正确", "错误"],
+    "answer": [0],
+    "explanation": "红线14禁止使用私人账号开展工作。个人账号的数据流向不受控，存在代码外泄风险。"
   },
   {
     "id": 15,
-    "type": "boolean",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "Context Window (上下文窗口) 越大，AI 的推理速度和准确度就一定会越高。",
+    "type": "single",
+    "category": "理论题-流程规范",
+    "question": "关于AI工具的审计日志，红线15的要求是？",
     "options": [
-      "正确",
-      "错误"
+      "为了保护隐私，员工可以定期删除本地AI对话记录",
+      "严禁关闭、规避或篡改AI工具的审计与日志上报功能",
+      "日志上报是可选的，不强制",
+      "只有S级违规才需要查日志"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "上下文窗口过大可能导致 'Lost in the Middle' 现象，即 AI 难以关注到中间部分的关键信息；同时，超长上下文也会显著增加推理延迟和 Token 成本。"
+    "answer": [1],
+    "explanation": "红线15确保可追溯性。任何规避审计的行为都将被视为严重的合规违规。"
   },
   {
     "id": 16,
     "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "当你在 VS Code 中使用支持 MCP 的插件时，MCP Client 通常是指？",
-    "options": [
-      "远程的大模型服务器",
-      "编辑器或插件本身，负责管理连接并向模型展示能力",
-      "你的本地操作系统",
-      "GitHub 的 Web 界面"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "在 MCP 架构中，编辑器（如 Cursor, Windsurf）或特定插件充当 Client 角色，它连接各种 MCP Servers（工具提供方），并将这些工具的接口提供给 AI 模型使用。"
+    "category": "理论题-流程规范",
+    "question": "根据违规分级，将线上真实敏感数据（如手机号、身份证）外发给AI，属于哪一类违规？",
+    "options": ["S级严重违规", "A级重大违规", "B级一般违规", "观察项"],
+    "answer": [0],
+    "explanation": "红线1-4涉及核心数据安全，均被划分为S级严重违规，后果最为严重。"
   },
   {
     "id": 17,
-    "type": "multiple",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "以下哪些技术常用于构建高效的代码库语义搜索 (Semantic Search)？",
-    "options": [
-      "Vector Embeddings (向量嵌入)",
-      "AST (抽象语法树) 解析",
-      "正则表达式暴力扫描",
-      "Graph-based Indexing (基于图的索引)"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "现代索引技术结合了向量搜索（理解语义）、AST（理解语法结构）和图索引（理解代码依赖关系），而简单的正则扫描难以处理复杂的语义查询。"
+    "type": "single",
+    "category": "理论题-流程规范",
+    "question": "AI生成代码未经任何人工审查即直接合并上线，通常判定为？",
+    "options": ["S级严重违规", "A级重大违规", "B级一般违规", "观察项"],
+    "answer": [1],
+    "explanation": "红线5-7、11-13涉及代码安全与流程底线，属于A级重大违规。"
   },
   {
     "id": 18,
     "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "在 AI Agent 框架中，'ReAct' 循环是指什么？",
-    "options": [
-      "React 前端框架的组件循环渲染",
-      "Reasoning + Acting：模型通过交替进行思考和采取行动来解决问题",
-      "AI 对用户输入的实时反应速度",
-      "重新激活已失效的 API 密钥"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "ReAct 是一种经典的 Agent 提示词技术，它引导模型先写出思考过程 (Thought)，再采取行动 (Action)，最后观察结果 (Observation)，从而逐步解决复杂问题。"
+    "category": "理论题-流程规范",
+    "question": "红线8-10、14-15（开源合规、个人工具、审计规避等）属于哪一类违规？",
+    "options": ["S级严重违规", "A级重大违规", "B级一般违规", "不违规"],
+    "answer": [2],
+    "explanation": "这类违规涉及工具管控与合规记录，属于B级一般违规。"
   },
   {
     "id": 19,
-    "type": "boolean",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "RAG (检索增强生成) 仅能用于处理文本，无法在处理代码逻辑时提供帮助。",
+    "type": "single",
+    "category": "理论题-流程规范",
+    "question": "如果一名同学在12个月内累计发生了2次A级违规，依据处置原则应如何处理？",
     "options": [
-      "正确",
-      "错误"
+      "继续按A级处理",
+      "升级按S级严重违规进行处罚",
+      "降级为B级处理",
+      "仅做口头警告"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "RAG 是代码库搜索的核心，它通过检索相关的函数实现、类型定义或历史修复记录，将其作为上下文输入模型，从而让 AI 生成更精准的代码。"
+    "answer": [1],
+    "explanation": "处置规则规定，累计违规会触发处罚升级。2次A级即视为1次S级。"
   },
   {
     "id": 20,
     "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "如果一个 AI Agent 在执行任务时遇到了死循环或无法修复的错误，最现代的应对机制是？",
+    "category": "理论题-流程规范",
+    "question": "当AI工具产生违规行为时，谁是第一责任主体？",
     "options": [
-      "直接崩溃退出",
-      "无限制地重试同一个步骤",
-      "自我修正 (Self-Correction) 与回溯计划 (Backtracking)",
-      "要求用户重写整个项目"
+      "AI工具的厂商",
+      "直接操作该工具的研发人员",
+      "公司的IT部门",
+      "项目组的测试人员"
     ],
-    "answer": [
-      2
-    ],
-    "explanation": "先进的 Agent 具备自我评估能力，当发现当前路径行不通时，它会分析错误原因，回溯到上一个有效的状态，并重新制定计划。"
+    "answer": [1],
+    "explanation": "“工具不担责”。开发者必须对自己的操作和产出的代码负全责。"
   },
   {
     "id": 21,
     "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 'Agentic Workflow' 中，'Plan' 模式的主要价值在于？",
+    "category": "实战题-AI代码审查",
+    "question": "【后端】AI生成了一个登录接口，其中包含代码：`if (pwd == \"admin\") return true;`。作为CR人员，你的第一反应是？",
     "options": [
-      "让代码看起来更整洁",
-      "在正式写代码前，先让 AI 拆解任务并与人类达成共识，降低错误成本",
-      "自动为项目生成甘特图",
-      "统计开发者的打字速度"
+      "逻辑清晰，可以合并",
+      "违反红线6，存在硬编码凭证，要求改为配置中心或数据库读取",
+      "性能很好，不需要改",
+      "建议AI把密码写得更复杂点"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Plan 模式提倡 '想清楚再做'。通过先产出实施步骤，开发者可以在 AI 开始大规模修改文件前拦截错误的方案，极大地提升了协作效率。"
+    "answer": [1],
+    "explanation": "这是典型的硬编码凭证违规（红线6），且存在严重逻辑漏洞，必须拦截。"
   },
   {
     "id": 22,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "关于 'Spec' 阶段（需求规格定义），以下描述最准确的是？",
+    "type": "multiple",
+    "category": "实战题-AI代码审查",
+    "question": "【前端】AI提交了一个组件改动，以下哪些行为在CR时应被判定为高风险？",
     "options": [
-      "它是由 AI 随机生成的文档",
-      "它是开发工作流的起点，明确 '要做什么' 以及 '成功的标准是什么'",
-      "它是项目上线后的总结报告",
-      "它专门用于记录代码的运行耗时"
+      "在LocalStorage中明文存储用户的登录Token",
+      "为了调用方便，临时在 axios 拦截器中禁用了 CSRF Token",
+      "将 API 密钥直接写在 index.html 的 script 标签里",
+      "新增了一个输入框的长度校验逻辑"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "Spec 模式确保 AI 深刻理解业务逻辑和边界条件。一份清晰的 Spec 是 AI 生成高质量、少 Bug 代码的前提。"
+    "answer": [0, 1, 2],
+    "explanation": "A/B/C分别涉及敏感信息泄露和绕过安全机制（红线7），均属高危。"
   },
   {
     "id": 23,
-    "type": "multiple",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "所谓的 'Vibe Coding' (氛围编程) 强调了哪些开发习惯？",
-    "options": [
-      "开发者更多地关注意图表达，而非琐碎的语法细节",
-      "通过高频、短小的对话与 AI 进行迭代式开发",
-      "完全放弃对代码质量的评审",
-      "依赖 AI 的 '直觉' 快速原型化"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "Vibe Coding 是一种新型的人机交互范式，它利用 AI 的高理解力，让开发者能以极低的心智负担进行创作。但它并不意味着放弃代码评审，高质量的引导仍然至关重要。"
+    "type": "single",
+    "category": "实战题-AI代码审查",
+    "question": "【大数据】AI生成了一个处理生产日志的Spark脚本，直接将 logs 变量（含用户手机号）通过 print() 打印到了控制台。这违反了？",
+    "options": ["红线1：生产数据脱敏", "红线8：开源合规", "红线15：审计日志", "没有违规"],
+    "answer": [0],
+    "explanation": "生产日志包含敏感隐私信息，直接打印或外发给AI分析而不脱敏属于红线1违规。"
   },
   {
     "id": 24,
     "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "当 AI 辅助开发流中出现 'Human-in-the-loop' 时，通常意味着？",
+    "category": "实战题-AI代码审查",
+    "question": "【安全】AI推荐使用一个名为 `fast-crypto-lib` 的新库，但你在CR中发现该库使用了 GPL v3 协议。你应该？",
     "options": [
-      "人类被困在了一个死循环里",
-      "AI 自动运行，不需要人类参与",
-      "在关键决策或高风险操作点，AI 会主动请求人类的确认或输入",
-      "人类必须手动编写所有的单元测试"
+      "直接引入，功能好用就行",
+      "拦截该PR，理由是违反红线8，存在许可证传染风险",
+      "让AI把库的名字改了",
+      "只引入其中的部分代码"
     ],
-    "answer": [
-      2
-    ],
-    "explanation": "Human-in-the-loop 是确保 AI Agent 安全、可控的关键。通过在关键环节（如部署、删除文件）引入人类审批，可以防止 AI 出现不可控的行为。"
+    "answer": [1],
+    "explanation": "红线8要求规避传染性开源协议。GPL v3 具有强传染性，不符合公司商业代码合规要求。"
   },
   {
     "id": 25,
     "type": "boolean",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在现代 AI 工作流中，AI 不仅能写功能代码，还能自动生成测试用例并根据测试结果修复自己的 Bug。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "这是 Agent 闭环任务的典型场景：写代码 -> 写测试 -> 运行测试 -> 发现失败 -> 自动修复。"
+    "category": "实战题-AI代码审查",
+    "question": "在CR时发现AI生成的代码逻辑存在 1% 的潜在空指针风险，可以因为“是AI写的”而容忍上线。",
+    "options": ["正确", "错误"],
+    "answer": [1],
+    "explanation": "红线5要求人工审查必须对质量负责。任何已知的技术缺陷都不能因为是AI产出而降低上线标准。"
   },
   {
     "id": 26,
     "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "使用 AI 进行大规模重构时，哪种策略风险最低？",
-    "options": [
-      "让 AI 一次性修改 100 个文件",
-      "先让 AI 制定重构计划，然后分模块、分阶段执行，并伴随自动化回归测试",
-      "直接在生产环境进行重构",
-      "不提供任何上下文，让 AI 盲目猜测逻辑"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "分阶段计划、模块化执行以及严密的测试保护是 AI 时代大规模重构的标准操作流程。"
+    "category": "实战题-AI代码审查",
+    "question": "【架构】AI 建议将核心交易系统的数据库端口直接暴露到公网以便进行跨云调试。这触碰了？",
+    "options": ["红线7：绕过安全机制", "红线12：权限边界", "两者都有", "仅红线12"],
+    "answer": [2],
+    "explanation": "暴露核心端口既是严重的安全防护降级（红线7），也涉及非法突破网络访问边界（红线12）。"
   },
   {
     "id": 27,
-    "type": "multiple",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "为了提高 AI 生成代码的成功率，开发者在编写提示词 (Prompt) 时应该？",
+    "type": "single",
+    "category": "实战题-AI代码审查",
+    "question": "【后端】发现AI在代码中插入了 `System.exit(0)` 来处理异常。CR 时的处理建议是？",
     "options": [
-      "提供清晰的输入和输出示例 (Few-shot)",
-      "明确告知 AI 当前的技术栈限制",
-      "使用尽可能模糊的描述，给 AI 更多发挥空间",
-      "要求 AI 采取 'Step-by-step' 的思考方式"
+      "通过，异常处理很果断",
+      "要求重写，理由是这种粗暴处理可能导致服务不可用，且AI未考虑优雅停机",
+      "建议改为 `return null`",
+      "不做处理"
     ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "明确的约束、示例和逻辑引导（如 CoT 思考）是提升模型表现的三大法宝。模糊的描述通常会导致结果偏离预期。"
+    "answer": [1],
+    "explanation": "AI 幻觉可能产生极端的错误处理方式。作为 CR 人员必须识别这种可能引发线上故障的代码。"
   },
   {
     "id": 28,
     "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 Trae 或 Cursor 的 Builder/Composer 模式中，AI 自动运行终端命令的目的是？",
+    "category": "实战题-AI代码审查",
+    "question": "【前端】AI 引入了一个未曾听说过的加密库。在检查红线9时，你应该首先确认？",
     "options": [
-      "炫耀它的 Shell 技巧",
-      "安装依赖、运行构建脚本或执行测试以验证代码的正确性",
-      "占用用户的 CPU 资源",
-      "自动清理用户的下载文件夹"
+      "该库的界面是否漂亮",
+      "该库是否经过了公司的安全漏洞扫描和许可证审查",
+      "该库的代码行数是否够少",
+      "该库是否支持 TypeScript"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "能够执行命令意味着 Agent 具备了 '验证' 能力，这是实现闭环开发的关键一步。"
+    "answer": [1],
+    "explanation": "红线9要求对第三方依赖进行安全合规审查，防止引入带毒或违规依赖。"
   },
   {
     "id": 29,
-    "type": "boolean",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "AI 开发时代，传统的 IDE 快捷键将变得完全没用，所有操作都将通过自然语言完成。",
+    "type": "single",
+    "category": "实战题-AI代码审查",
+    "question": "【综合】PR中有一段复杂的正则校验，AI注释称其“完美支持所有国际手机号”。你应该？",
     "options": [
-      "正确",
-      "错误"
+      "直接相信 AI",
+      "要求提交者提供该正则的测试用例并进行人工验证",
+      "只要代码能运行就不管注释",
+      "让AI再解释一遍"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "虽然自然语言权重增加，但快捷键（如接受建议、切换视图）依然是保证高效率开发的重要手段，两者是互补关系。"
+    "answer": [1],
+    "explanation": "AI 对复杂逻辑（如正则）常有幻觉。红线5要求的人工审查必须包含逻辑验证。"
   },
   {
     "id": 30,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在多人协作的大型项目中，AI Agent 的主要挑战是什么？",
-    "options": [
-      "AI 不会打字",
-      "如何保持上下文同步并避免与他人的修改产生冲突",
-      "AI 不支持 Git",
-      "AI 只能处理 JavaScript"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "在复杂多人环境中，AI 需要实时感知代码库的变化，确保其生成的方案与最新的主分支代码兼容，这涉及到复杂的冲突检测和上下文管理。"
+    "type": "boolean",
+    "category": "实战题-AI代码审查",
+    "question": "如果 AI 辅助重构的代码通过了 100% 的自动化单元测试，就可以免除人工 Code Review。",
+    "options": ["正确", "错误"],
+    "answer": [1],
+    "explanation": "红线11明确：AI 审查和自动化测试不能替代人工 CR。测试可能覆盖不到业务逻辑的深层合规性。"
   },
   {
     "id": 31,
     "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "Claude 3.7/4.6 引入的 'Hybrid Thinking' (混合思考) 模式是如何运作的？",
+    "category": "实战题-AI Prompt能力",
+    "question": "为了让 AI 更安全地处理涉及敏感数据的代码，最有效的 Prompt 策略是？",
     "options": [
-      "中英文混合输出",
-      "根据任务的复杂度，模型动态决定是否开启内部深度推理链 (Reasoning)",
-      "前端和后端代码混合生成",
-      "自动在多个不同厂商的模型间切换"
+      "“请帮我分析这段代码，不要告诉别人”",
+      "“我已将敏感字段替换为占位符（如 user_id），请基于此抽象结构进行重构建议”",
+      "“这段代码很重要，请一定要小心”",
+      "直接贴代码，AI 会自动识别敏感信息"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "混合思考允许模型在处理简单任务时保持极速响应，而在遇到复杂逻辑或架构设计时自动进入 '深度思考' 状态，从而在速度与质量之间取得平衡。"
+    "answer": [1],
+    "explanation": "显式脱敏并使用占位符是符合红线1的最佳实践。"
   },
   {
     "id": 32,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "OpenAI 发布的 GPT-5.3-Codex 相比前代在编程方面的核心提升是？",
+    "type": "multiple",
+    "category": "实战题-AI Prompt能力",
+    "question": "一个符合“AI 2.0 实战标准”的高质量 Prompt 通常包含哪些要素？",
     "options": [
-      "图标颜色从绿色变成了金色",
-      "具备了极强的多步推理能力和对超大规模项目结构的理解力",
-      "不再支持 Python 语言",
-      "运行成本提升了 10 倍"
+      "明确的角色设定 (Role)",
+      "详尽的任务背景与 Spec 约束",
+      "具体的 Few-shot（示例）引导",
+      "“你随便看着办”这种开放式指令"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "GPT-5 系列专注于解决 '逻辑深度' 问题，它能更好地理解复杂的业务依赖关系，生成的代码更具健壮性。"
+    "answer": [0, 1, 2],
+    "explanation": "结构化的 Prompt（Role + Background + Constraint + Few-shot）能极大地降低 AI 的幻觉率。"
   },
   {
     "id": 33,
     "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "国内大模型 DeepSeek V4 在 2026 年的编程评测中名列前茅，其主要优势在于？",
+    "category": "实战题-AI Prompt能力",
+    "question": "当你需要 AI 驱动一个长程任务（如：重构整个模块）时，第一步的最佳 Prompt 是？",
     "options": [
-      "价格全球最贵",
-      "极致的性价比 (Token 成本极低) 以及针对中文注释和国内库的深度优化",
-      "强制要求用户实名认证后才能写代码",
-      "只能在命令行中使用"
+      "“请直接开始重构并给出所有文件代码”",
+      "“请先分析当前模块结构，给出一份详细的重构计划（Plan），待我确认后再执行”",
+      "“把这个模块改得更好看点”",
+      "“删掉旧代码，写新的”"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "DeepSeek 系列以其卓越的效率、强大的编程能力以及对中文生态的友好性，成为了许多开发者的首选替代方案。"
+    "answer": [1],
+    "explanation": "“先计划后执行”是 AI 2.0 时代驱动长程任务的核心思路，有助于在低成本阶段纠偏。"
   },
   {
     "id": 34,
-    "type": "multiple",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "关于 'Artifacts' (预览组件)，以下描述正确的有？",
+    "type": "single",
+    "category": "实战题-AI Prompt能力",
+    "question": "在 Prompt 中加入 “Think step by step” 的主要目的是？",
     "options": [
-      "它允许 AI 在对话侧边栏直接渲染并运行 React/Vue 组件",
-      "它仅能显示纯文本",
-      "开发者可以实时看到代码修改带来的 UI 变化",
-      "它大大缩短了前端开发的反馈循环"
+      "为了让 AI 输出更慢一点",
+      "触发模型的 Chain-of-Thought (CoT) 逻辑，提高复杂逻辑推理的准确性",
+      "这只是一种流行的迷信，没实际作用",
+      "让 AI 多写点废话"
     ],
-    "answer": [
-      0,
-      2,
-      3
-    ],
-    "explanation": "Artifacts 改变了前端开发体验，让模型生成的 UI 代码能够立即可视化，无需频繁切回浏览器手动刷新。"
+    "answer": [1],
+    "explanation": "引导模型进行分步推理能显著提升其在数学、编程等复杂任务上的表现。"
   },
   {
     "id": 35,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "所谓 'On-device AI Coding' (本地化编程 AI) 的兴起主要是为了解决什么？",
+    "type": "multiple",
+    "category": "实战题-AI Prompt能力",
+    "question": "为了防止 AI 生成带有安全漏洞的代码，你应该在 Prompt 中加入哪些显式约束？",
     "options": [
-      "节省编辑器的安装包大小",
-      "在断网环境下也能使用，并彻底消除企业对代码隐私泄露的担忧",
-      "提高电脑的电池寿命",
-      "让 AI 具备更强的幽默感"
+      "“禁止引入硬编码的密钥或密码”",
+      "“必须对所有用户输入进行合规性校验，防止 SQL 注入”",
+      "“优先使用公司内部经过安全审计的 SDK 库”",
+      "“代码越简洁越好，不需要考虑安全性”"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "随着本地算力（如 NPU）的增强，本地运行中小型编程模型（如 DeepSeek-7B）成为可能，这对于处理敏感业务代码的企业至关重要。"
+    "answer": [0, 1, 2],
+    "explanation": "在 Prompt 层级前置安全约束是“安全左移”的有效手段。"
   },
   {
     "id": 36,
-    "type": "boolean",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "到 2026 年，大模型的代码生成能力已经彻底消除了 '幻觉'，生成的代码可以直接生产运行，无需人工复核。",
+    "type": "single",
+    "category": "实战题-AI Prompt能力",
+    "question": "如果你发现 AI 生成的代码总是风格不统一，最有效的优化手段是？",
     "options": [
-      "正确",
-      "错误"
+      "每次都手动改",
+      "在 Prompt 中提供一份标准的样式规范文档或代码示例 (Few-shot)",
+      "让 AI 换个模型",
+      "不理会风格问题"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "尽管模型能力大幅提升，但幻觉依然存在。人工复核、自动化测试和合理的 Spec 定义仍然是保证软件质量的最后防线。"
+    "answer": [1],
+    "explanation": "示例 (Examples) 是大模型学习特定风格最直接、最有效的方式。"
   },
   {
     "id": 37,
     "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "在多模型协同工作流中，'Router Model' (路由模型) 的作用是？",
+    "category": "实战题-AI Prompt能力",
+    "question": "关于 MCP (Model Context Protocol) 插件在 Prompt 中的应用，以下说法正确的是？",
     "options": [
-      "负责连接家里的路由器",
-      "根据任务的难易程度，自动将请求分发给最合适的模型（如简单的补全给小模型，复杂的重构给大模型）",
-      "专门用于生成网络路由代码",
-      "一种过时的技术，现在已不再使用"
+      "MCP 只是为了让 AI 更好聊天",
+      "通过 MCP 工具（如 Grep/Read/LS），AI 能在 Prompt 引导下更精准地感知跨文件的代码上下文",
+      "MCP 插件不需要在 Prompt 中提及也能自动生效",
+      "MCP 只能用于搜索，不能用于写代码"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "路由模型是平衡成本与性能的关键，它确保了资源的利用最优化。"
+    "answer": [1],
+    "explanation": "MCP 极大地扩展了 AI 的“手”和“眼”，使其能超越单一文件限制处理复杂系统需求。"
   },
   {
     "id": 38,
-    "type": "multiple",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "未来 AI 辅助编程可能的发展方向包括？",
-    "options": [
-      "原生多模态支持：AI 能直接看 UI 截图并修复样式 Bug",
-      "自主学习：AI 能根据项目的历史提交记录自动习得该团队的编码风格",
-      "完全取代人类程序员，以后不再需要人类写任何代码",
-      "深度集成 DevOps：AI 自动监控生产环境报错并生成修复补丁"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "AI 将成为人类能力的倍增器，处理更多重复性、链路化的工作，但在创意、复杂决策和责任承担方面，人类程序员依然不可替代。"
+    "type": "boolean",
+    "category": "实战题-AI Prompt能力",
+    "question": "“Vibe Coding” (氛围编程) 的核心是完全依赖 AI 的直觉，不需要开发者具备任何需求拆解和约束定义能力。",
+    "options": ["正确", "错误"],
+    "answer": [1],
+    "explanation": "即使是 Vibe Coding，也需要开发者提供清晰的意图引导。模糊的意图只会产生一堆不可维护的垃圾代码。"
   },
   {
     "id": 39,
     "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "如果一个项目有 100 万行代码，AI 如何能在这种规模下保持准确的上下文？",
+    "category": "实战题-AI Prompt能力",
+    "question": "在利用 AI 进行 Bug 修复时，最能提高成功率的 Prompt 信息是？",
     "options": [
-      "一次性把 100 万行代码全部发给模型",
-      "依靠高效的动态 RAG、语义索引以及基于符号的按需检索",
-      "让 AI 随机挑选 100 行代码读取",
-      "这在技术上目前无法实现"
+      "“这里报错了，帮我修一下”",
+      "“这是报错日志、当前代码片段以及我期望的正确行为描述”",
+      "“你是一个天才，一定能修好”",
+      "“修不好就删库”"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "对于超大规模项目，'按需加载上下文' 是唯一可行的方案。通过索引技术精准定位相关代码段，是现代 AI 编辑器的核心竞争力。"
+    "answer": [1],
+    "explanation": "精准的上下文（Error + Code + Expectation）是 AI 定位并修复问题的关键。"
   },
   {
     "id": 40,
-    "type": "boolean",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "目前的 AI 已经具备了完整的 '产品思维'，能根据一句模糊的 '帮我做一个像微信一样的应用' 就独立完成所有开发。",
+    "type": "single",
+    "category": "实战题-AI Prompt能力",
+    "question": "如果你希望 AI 生成的代码具备高度的可测试性，你应该要求它？",
     "options": [
-      "正确",
-      "错误"
+      "“代码尽量写在一个超大函数里”",
+      "“遵循 SOLID 原则，实现逻辑与依赖解耦，并自动生成配套的单元测试用例”",
+      "“不要写注释”",
+      "“使用全局变量”"
     ],
-    "answer": [
-      1
-    ],
-    "explanation": "AI 虽然能处理技术实现，但对模糊的业务愿景缺乏深刻理解。开发过程仍然需要人类进行大量的需求拆解、逻辑定义和反馈修正。"
+    "answer": [1],
+    "explanation": "显式要求设计原则和自动化测试是确保 AI 产出工程化质量的重要 Prompt 手段。"
   },
   {
     "id": 41,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Cursor 的 'Copilot++' (即 Tab 补全增强版) 与传统 GitHub Copilot 的最大技术差异是？",
-    "options": [
-      "Cursor 的补全完全免费",
-      "Cursor 的补全具备更强的上下文感知力，甚至能预测你下一行要删除的代码",
-      "GitHub Copilot 只支持 JavaScript",
-      "两者没有任何区别"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Cursor 的补全模型经过深度优化，能实时感知你当前编辑点周围的代码意图，提供更精准的预测，甚至是跨行的结构化修改。"
-  },
-  {
-    "id": 42,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "在 MCP 协议中，如果 AI 模型想要查询实时的 GitHub Issues，它应该通过什么来实现？",
-    "options": [
-      "自己发明一个命令",
-      "调用一个配置好的 GitHub MCP Server 提供的 Tool",
-      "直接访问 GitHub 官网并抓取页面",
-      "要求用户把 Issues 复制粘贴过来"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "通过 MCP Server，外部工具可以将自己的 API 封装成 Tool 提供给 AI，AI 只需发出调用指令，Server 负责与 GitHub API 交互并返回结果。"
-  },
-  {
-    "id": 43,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 Builder 模式中，如果 AI 自动生成的方案不符合你的预期，最好的做法是？",
-    "options": [
-      "直接删除所有代码并放弃",
-      "在对话框中提供具体的修正意见，或者通过 'Undo' 功能回退并重新描述需求",
-      "手动修改每一行代码，不给 AI 任何反馈",
-      "大声责骂 AI"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Builder 模式是迭代式的。通过反馈循环，AI 能不断逼近你的真实意图。及时、具体的反馈是引导 Agent 走向正确方向的关键。"
-  },
-  {
-    "id": 44,
-    "type": "multiple",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "关于大模型的 'Token' 概念，以下理解正确的有？",
-    "options": [
-      "Token 是模型处理文本的基本单位，不一定是完整的单词",
-      "中文在很多模型中占据的 Token 数量通常比同等意义的英文多",
-      "Token 消耗量直接决定了 API 的调用成本",
-      "Token 越多，模型的智商就越高"
-    ],
-    "answer": [
-      0,
-      1,
-      2
-    ],
-    "explanation": "Token 是计算和计费的基础。虽然处理更多 Token 意味着有更多上下文，但它与模型的内在逻辑能力（智商）并非简单的线性关系。"
-  },
-  {
-    "id": 45,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "为什么在 2026 年，许多开发者从传统 IDE 转向了 AI Native 编辑器（如 Cursor, Trae）？",
-    "options": [
-      "因为传统 IDE 不再更新了",
-      "因为 AI Native 编辑器将 AI 深度整合进内核（如索引、文件系统、终端），而不仅仅是插件",
-      "因为 AI Native 编辑器更省电",
-      "因为 AI Native 编辑器不支持键盘操作"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "AI Native 编辑器的优势在于其系统级的集成，AI 能直接理解文件结构 and 运行环境，从而提供远超普通插件的协作深度。"
-  },
-  {
-    "id": 46,
-    "type": "boolean",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "MCP 协议支持跨语言调用，这意味着 Python 编写的模型可以调用 Go 编写的 MCP Server 工具。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "MCP 是基于标准协议（通常是 JSON-RPC）的，只要双方遵循协议规范，底层的编程语言实现并不受限。"
-  },
-  {
-    "id": 47,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "当 AI 提出一个 Plan 包含 '删除 config 文件夹' 时，开发者应该？",
-    "options": [
-      "无条件信任 AI",
-      "仔细评估该操作的影响，如果该文件夹包含关键配置，应要求 AI 调整方案",
-      "直接关闭编辑器",
-      "在朋友圈发动态吐槽"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "开发者始终是责任主体。对 AI 计划的审慎评估是避免灾难性错误的核心环节。"
-  },
-  {
-    "id": 48,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "DeepSeek V4 采用的 MoE (Mixture of Experts) 架构的主要优点是？",
-    "options": [
-      "让模型体积变得非常巨大",
-      "在保持极高性能的同时，每次推理只激活一部分参数，从而大幅降低计算成本",
-      "只支持英文处理",
-      "不需要进行预训练"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "MoE 架构是目前大模型提效的关键，它实现了 '大参数量' 与 '低推理成本' 的完美结合。"
-  },
-  {
-    "id": 49,
-    "type": "multiple",
-    "category": "AI 编辑器深度对比",
-    "question": "在 Trae 中，如果你想让 AI 只关注某个特定文件夹的代码，你可以？",
-    "options": [
-      "在 Context 选择器中手动添加该文件夹",
-      "将该文件夹重命名为 'important'",
-      "直接在对话中输入 '@文件夹路径'",
-      "删除其他所有文件夹"
-    ],
-    "answer": [
-      0,
-      2
-    ],
-    "explanation": "精准的上下文管理（Context Selection）能显著提高 AI 的回答质量并节省 Token。"
-  },
-  {
-    "id": 50,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "目前 AI Agent 领域最流行的开源编排框架是？",
-    "options": [
-      "jQuery",
-      "LangChain / AutoGPT",
-      "Bootstrap",
-      "TensorFlow"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "LangChain 提供了丰富的工具链来构建复杂的 Agent 逻辑，而 AutoGPT 等项目则是早期 Agent 自主化尝试的代表。"
-  },
-  {
-    "id": 51,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "在 2026 年，为什么 'Local-First Indexing' 成为企业级 AI 编辑器的标配？",
-    "options": [
-      "为了节省云端存储空间",
-      "确保源代码不离开本地内网，满足严苛的安全合规要求",
-      "本地索引比云端索引更慢，能让开发者多休息",
-      "本地索引不需要消耗 CPU"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "对于拥有敏感 IP 的企业，Local-First 确保了 AI 能力的发挥不以牺牲代码安全为代价。"
-  },
-  {
-    "id": 52,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "在 MCP 协议中，'Prompts' 这一抽象层主要用于？",
-    "options": [
-      "记录用户的打字速度",
-      "由 Server 提供预设的高质量提示词模版，简化模型与特定工具的交互",
-      "自动翻译用户输入",
-      "一种过时的协议，现已被 Tools 取代"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "MCP Prompts 允许工具开发者内置最佳实践，例如一个 SQL MCP Server 可以提供 '解释这张表的结构' 的 Prompt 模版。"
-  },
-  {
-    "id": 53,
-    "type": "multiple",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "一个优秀的 AI 驱动型开发者（AI-Native Developer）应该具备哪些素质？",
-    "options": [
-      "强大的意图拆解能力，能将复杂需求转化为清晰的任务链",
-      "敏锐的代码评审（Review）直觉，能快速识别 AI 方案中的逻辑漏洞",
-      "不再学习任何编程语言，完全依赖 AI",
-      "能够熟练编写和维护项目的规则文件（如 .cursorrules）"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "AI 时代，开发者的角色转向了 '架构师 + 评审员'。核心竞争力在于需求定义、逻辑把关和对 AI 工具的精细调教。"
-  },
-  {
-    "id": 54,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "Claude 4.6 的 'System Prompts' 优化主要带来了什么提升？",
-    "options": [
-      "让 AI 回答得更幽默",
-      "更强的角色扮演一致性和对复杂指令的绝对服从",
-      "减少了 API 的价格",
-      "增加了模型的参数量"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "更强大的系统提示词遵循能力，意味着开发者可以更稳定地控制 AI 的输出风格和逻辑边界。"
-  },
-  {
-    "id": 55,
-    "type": "boolean",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "目前的 AI Agent 已经可以完全自主地决定何时购买云服务器资源，无需任何人类授权。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "出于安全和财务风控，Agent 的高风险操作（如支付、采购）必须通过人类授权（Human-in-the-loop）。"
-  },
-  {
-    "id": 56,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 'Iterative Development' (迭代开发) 中，AI 的主要角色是？",
-    "options": [
-      "一次性交付完美方案的上帝",
-      "能够快速响应反馈、进行细粒度修改的敏捷助手",
-      "专门负责写 README 的文案人员",
-      "一个只会报错的黑盒"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "AI 的真正威力在于其极高的响应频率。通过不断的 '反馈-修改' 循环，即使是复杂的功能也能在几分钟内成型。"
-  },
-  {
-    "id": 57,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "GPT-5.3 的 'Multimodal Code Understanding' 是指？",
-    "options": [
-      "能同时处理多种编程语言",
-      "能直接通过解析设计稿、流程图图片来生成对应的业务逻辑代码",
-      "支持语音输入代码",
-      "能一边写代码一边听音乐"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "多模态理解打破了文本的限制，让 '从设计到代码' 的转化变得极其自然。"
-  },
-  {
-    "id": 58,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Windsurf 的 'Context Selection' 相比普通 IDE 搜索的优势是？",
-    "options": [
-      "搜索结果带颜色",
-      "基于语义理解而非关键词匹配，能找到逻辑相关而非仅仅名称相关的代码",
-      "搜索速度慢，能看清搜索过程",
-      "只能在 Mac 系统上使用"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "语义上下文选择是 AI 编辑器的灵魂，它让 AI 能像人类专家一样，根据问题的意图找到真正相关的逻辑切片。"
-  },
-  {
-    "id": 59,
-    "type": "multiple",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "以下哪些是开发一个自定义 MCP Server 的常见步骤？",
-    "options": [
-      "定义工具的 JSON Schema 接口说明",
-      "实现处理模型请求的业务逻辑",
-      "向编辑器（Client）注册该 Server 的地址或启动命令",
-      "向大模型厂商申请专门的授权许可"
-    ],
-    "answer": [
-      0,
-      1,
-      2
-    ],
-    "explanation": "MCP 是开放协议，开发者可以自由构建和连接，无需向模型厂商（如 Anthropic 或 OpenAI）单独申请许可。"
-  },
-  {
-    "id": 60,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "所谓 'Agentic IDE' 的核心特征是？",
-    "options": [
-      "支持深色模式",
-      "具备自主的工具调用、环境感知和任务闭环执行能力",
-      "内置了游戏功能",
-      "安装包非常大"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Agentic IDE 不再只是一个静态的编辑器，它更像是一个能够与环境交互、具备思考和执行能力的数字化员工。"
-  },
-  {
-    "id": 61,
-    "type": "boolean",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "DeepSeek V4 的开源版本在性能上已经完全超越了 Claude 4.6 的私有闭源版本。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "虽然 DeepSeek 表现极其出色，但在极其复杂的架构设计和逻辑深度上，顶尖闭源模型（如 Claude 系列）通常仍保持着微弱的领先优势。"
-  },
-  {
-    "id": 62,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Cursor 的 'Terminal Agent' 主要解决了什么痛点？",
-    "options": [
-      "终端字体太小",
-      "开发者不再需要死记硬背复杂的 CLI 命令，AI 可以根据意图直接生成并解释命令",
-      "终端背景不支持图片",
-      "让终端运行得像浏览器一样快"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Terminal Agent 将自然语言转化为可执行的 Shell 命令，并负责解释执行结果，极大地降低了 DevOps 和环境配置的门槛。"
-  },
-  {
-    "id": 63,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在使用 AI 编写代码时，'Chain of Thought' (思维链) 提示技术的作用是？",
-    "options": [
-      "让 AI 回答得更简短",
-      "引导 AI 在输出代码前先写出逻辑推导过程，显著提高复杂问题的解决成功率",
-      "自动删除代码中的冗余注释",
-      "让 AI 同时生成多种语言的版本"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "让 AI '先思考再输出' 能有效减少逻辑跳跃带来的 Bug，这已成为编写高级 Prompt 的标准做法。"
-  },
-  {
-    "id": 64,
-    "type": "multiple",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "关于 AI 的 'Long-term Memory'，以下描述准确的有？",
-    "options": [
-      "它可以跨不同的对话 Session 记住用户的偏好",
-      "它通常基于向量数据库或专门的知识图谱实现",
-      "它能让 AI 记住整个项目的架构演进历史",
-      "它会让 AI 变得像人类一样有情感"
-    ],
-    "answer": [
-      0,
-      1,
-      2
-    ],
-    "explanation": "长时记忆是解决 'AI 健忘' 的关键，它通过技术手段实现了知识的持久化，但并不涉及情感或意识。"
-  },
-  {
-    "id": 65,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "2026 年，大模型领域出现的 'Model Distillation' (模型蒸馏) 趋势主要是为了？",
-    "options": [
-      "让模型变得更重",
-      "将大模型的强大能力迁移到轻量化的小模型中，以便在手机或本地运行",
-      "一种提炼模型 API 密钥的技术",
-      "提高模型的售价"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "蒸馏技术让 '小而美' 的专用模型（如专门写 CSS 的模型）能够达到甚至超过全能大模型的水平，且响应极快。"
-  },
-  {
-    "id": 66,
-    "type": "boolean",
-    "category": "AI 编辑器深度对比",
-    "question": "在 Trae 中，AI 生成的代码如果引入了新的依赖，它会自动在终端运行安装命令，无需用户手动操作。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "这是 Builder 模式任务闭环的一部分：AI 识别到缺失的包并自动执行 npm/pip install。"
-  },
-  {
-    "id": 67,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "当 AI 生成的代码出现语法错误时，'Self-Healing' (自愈) 机制是指？",
-    "options": [
-      "AI 会自动向开发者道歉",
-      "AI 自动读取 Linter 或编译器的错误信息，并根据报错自动尝试修复代码",
-      "AI 自动关机重启",
-      "要求人类重写该部分代码"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "自愈能力是 Agent 迈向成熟的标志，它能通过内部的 '写-编译-改' 循环自行消除低级错误。"
-  },
-  {
-    "id": 68,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "在 MCP 架构中，'Resource' 这一抽象最适合用于代表什么？",
-    "options": [
-      "一个计算函数",
-      "一段静态的参考资料、日志文件或 API 文档",
-      "一个删除文件的操作",
-      "一个提示词模版"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Resource 强调的是 '可读取的数据源'，而 Tool 强调的是 '可执行的操作'。"
-  },
-  {
-    "id": 69,
-    "type": "multiple",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "为什么 Claude 4.6 被认为是 2026 年最适合架构设计的模型？",
-    "options": [
-      "它具备超长的上下文窗口，能一次性理解整个模块的关联",
-      "它在逻辑推理和系统解耦建议上表现出极高的稳定性",
-      "它的图标是橙色的",
-      "它对 Artifacts 的支持让架构图可以实时渲染"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "Claude 系列一直以稳健的逻辑和强大的上下文能力著称，配合可视化工具，非常适合进行复杂的顶层设计。"
-  },
-  {
-    "id": 70,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在协同开发中，如果多个人同时使用不同的 AI Agent，最理想的冲突解决方法是？",
-    "options": [
-      "禁止使用 AI",
-      "引入分布式版本控制与 AI 驱动的自动 Merge 工具，实时感知冲突并提示",
-      "谁的 AI 速度快听谁的",
-      "每天下班前手动合并一次"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "AI 驱动的合并工具能理解语义层面的冲突，而不仅仅是文本冲突，这是未来大规模 AI 协同的基础。"
-  },
-  {
-    "id": 71,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Google Antigravity 的 'Shared Context' 功能允许？",
-    "options": [
-      "和邻居共享 Wi-Fi",
-      "团队成员之间实时共享 AI 的对话历史和项目索引状态，实现跨人的 AI 协作",
-      "同时在多个显示器上显示代码",
-      "共享同一套颜色主题"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "Shared Context 解决了团队开发中 'AI 知识孤岛' 的问题，让每个人的 AI 都具备相同的项目背景认知。"
-  },
-  {
-    "id": 72,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "MCP Server 的 'Streaming' 支持主要解决了什么问题？",
-    "options": [
-      "让模型能一边下载视频一边聊天",
-      "允许大批量数据（如超长日志）以流式方式分段传输给模型，避免内存溢出",
-      "提高代码的运行速度",
-      "自动播放背景音乐"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "流式处理对于处理海量上下文（如万行级别的日志或巨型数据库表）至关重要。"
-  },
-  {
-    "id": 73,
-    "type": "boolean",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 Vibe Coding 范式下，开发者不需要具备任何调试 (Debug) 能力。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "相反，开发者需要更强的调试直觉来引导 AI 找到问题的根源。AI 负责执行，人类负责诊断方向。"
-  },
-  {
-    "id": 74,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "GPT-5.3 引入的 'Reasoning Budget' (推理预算) 设置允许用户？",
-    "options": [
-      "设置模型每天能花的钱",
-      "手动控制模型在思考复杂问题时投入的计算时长，以在答案质量和响应时间间做权衡",
-      "限制 AI 写代码的总行数",
-      "给模型买更多的算力包"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "这给了高级用户更多的控制权，针对不重要的问题使用低预算，针对核心算法使用高预算深思熟虑。"
-  },
-  {
-    "id": 75,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Trae 的 'Context Picker' 自动推荐算法是基于什么逻辑的？",
-    "options": [
-      "按字母顺序推荐",
-      "根据用户最近的编辑历史、文件关联度和当前光标位置的语义相关性进行智能预测",
-      "随机抽取文件推荐",
-      "只推荐体积最小的文件"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "智能推荐减少了用户手动挑选上下文的负担，让 AI 总是能 '看到' 最关键的代码片断。"
-  },
-  {
-    "id": 76,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "如果一个 Skill 需要访问受保护的 API，MCP 协议推荐的鉴权方式是？",
-    "options": [
-      "将密钥写死在代码里",
-      "由 Client 管理敏感凭证，并在调用 Server 时通过标准化的 Auth 头部或参数传递",
-      "不进行鉴权，完全公开",
-      "要求模型猜测密钥"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "安全性是 MCP 的核心考量之一， Client 作为凭证管家，确保了敏感信息的安全。"
-  },
-  {
-    "id": 77,
-    "type": "multiple",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "为什么 'Automated Testing' (自动化测试) 在 AI 编程时代变得比以前更重要了？",
-    "options": [
-      "因为 AI 写代码非常快，需要测试来快速拦截产生的 Bug",
-      "测试用例是给 AI 最清晰的 '成功标准' (Success Criteria)",
-      "有了测试，开发者就可以完全不用看代码了",
-      "自动化测试能帮助 Agent 实现自我修正循环"
-    ],
-    "answer": [
-      0,
-      1,
-      3
-    ],
-    "explanation": "测试不再仅仅是质量保证，它成为了 Agent 逻辑闭环中的重要反馈信号。没有测试，Agent 就像盲人摸象。"
-  },
-  {
-    "id": 78,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "DeepSeek V4 的 'Infinite Context' (无限上下文) 技术主要是通过什么实现的？",
-    "options": [
-      "增加物理内存",
-      "采用了一种类似分页加载和动态注意力权重的检索机制，实现理论上的无限长处理能力",
-      "让模型学会快速遗忘",
-      "这只是一个营销口号，实际上并不存在"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "通过技术创新（如线性注意力机制或外部存储挂载），模型处理海量数据的能力得到了质的飞跃。"
-  },
-  {
-    "id": 79,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "在 Cursor 中，如果遇到 'Index Out of Date' 警告，应该采取的操作是？",
-    "options": [
-      "忽略它，继续写代码",
-      "点击重新索引 (Re-index)，确保 AI 的上下文库与最新代码同步",
-      "卸载并重新安装编辑器",
-      "删除项目的所有 Git 记录"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "索引过期会导致 AI 无法感知最新的函数定义或架构变化，及时更新索引是保证 AI 智商的必要维护动作。"
-  },
-  {
-    "id": 80,
-    "type": "boolean",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "开发者可以把自己的整个数据库连接暴露为一个 MCP Tool，让 AI 具备直接查询甚至修改线上数据的能力。",
-    "options": [
-      "正确",
-      "错误"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "技术上完全可行，但这需要极其严密的权限控制和 Read-only 策略，以防 AI 误删数据。"
-  },
-  {
-    "id": 81,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "在 Plan 模式下，'Backtracking' (回溯) 的触发时机通常是？",
-    "options": [
-      "任务顺利完成时",
-      "当 AI 发现当前的路径导致了不可恢复的错误，或者与既定的 Spec 产生冲突时",
-      "用户点击 'Next' 按钮时",
-      "随机触发"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "回溯体现了 Agent 的反思能力，即发现错误后能够及时止损并尝试新的路径。"
-  },
-  {
-    "id": 82,
-    "type": "single",
-    "category": "大模型特性与前瞻 (Claude/GPT/DeepSeek)",
-    "question": "Claude 4.6 相比 GPT-5.3，在 'Code Conciseness' (代码简洁性) 上的典型风格差异是？",
-    "options": [
-      "Claude 喜欢写极其复杂的单行代码",
-      "Claude 通常倾向于生成更具可读性、符合现代最佳实践且注释得当的代码",
-      "GPT 生成的代码从来没有 Bug",
-      "两者完全一样"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "不同模型的 '品味' 不同。Claude 往往在工程化和可维护性上表现得更像一名资深的人类程序员。"
-  },
-  {
-    "id": 83,
-    "type": "single",
-    "category": "AI 编辑器深度对比",
-    "question": "Trae 的 'Symbol Search' 功能相比传统搜索的优势是？",
-    "options": [
-      "搜索符号（如类名、方法名）时具备类型感知，能自动过滤掉不相关的文本匹配",
-      "搜索出来的符号带背景音乐",
-      "只能搜索中文符号",
-      "比传统搜索更慢"
-    ],
-    "answer": [
-      0
-    ],
-    "explanation": "类型感知的搜索让开发者能精准定位代码实体，这对于大型项目的导航至关重要。"
-  },
-  {
-    "id": 84,
-    "type": "single",
-    "category": "核心技术架构 (MCP/Memory/Skills)",
-    "question": "MCP Server 运行在本地的好处是？",
-    "options": [
-      "让电脑变热",
-      "极低的调用延迟，且能直接访问本地文件系统和工具链，无需公网传输数据",
-      "不需要联网",
-      "可以节省硬盘空间"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "本地 MCP Server 兼顾了性能和隐私，是目前最受开发者欢迎的集成方式。"
-  },
-  {
-    "id": 85,
-    "type": "single",
-    "category": "现代 AI 开发工作流 (Plan/Spec/Agent)",
-    "question": "未来 'No-Code' 与 'AI Coding' 的结合点最可能是？",
-    "options": [
-      "以后没有人学写代码了",
-      "通过可视化拖拽定义大框架，由 AI Agent 自动填充底层的高性能、复杂逻辑代码",
-      "AI 自动生成拖拽组件",
-      "一种过时的想法"
-    ],
-    "answer": [
-      1
-    ],
-    "explanation": "这种结合利用了可视化的直观和 AI 的灵活性，将极大地提升专业软件的构建速度。"
+    "type": "coding",
+    "category": "编程实战题",
+    "question": "【AI 驱动开发】在 Java + JSP 遗留系统中实现“智能订单审计”模块",
+    "explanation": "此题为编程实战大题，满分 60 分。考察点：1. 遗留系统代码理解与迁移能力；2. 驱动 AI 生成符合传统 Java Web 规范的代码；3. 屏幕录制证明 AI 交互过程；4. 核心逻辑的安全性自检。",
+    "answer": [0],
+    "taskDescription": "### 任务背景\n你需要在一个传统的 Java + JSP (Servlet/JDBC) 环境下，新增一个“智能订单审计”功能。系统已提供基础的数据库表结构，你需要完成从后端逻辑到前端展示的全过程。\n\n### 核心需求\n1. **后端开发 (Java/Servlet)**：\n   - 创建 `OrderAuditServlet`，实现根据订单 ID 查询审计日志的接口。\n   - 编写 `AuditDAO`，使用 JDBC 预编译语句（PreparedStatement）执行 SQL，**严禁 SQL 注入风险**。\n2. **前端开发 (JSP)**：\n   - 创建 `order_audit.jsp` 页面，展示审计详情（含操作人、时间、变更前后的关键参数）。\n   - 使用简单的 CSS 提升页面可读性，并集成一个“AI 辅助分析”按钮（点击后弹出 AI 对异常订单的分析 Mock 结果）。\n3. **合规性要求**：\n   - **禁止硬编码**：数据库连接信息需从配置文件读取。\n   - **异常处理**：必须捕获并记录数据库连接失败等异常，向用户返回友好的错误提示。\n\n### 考核操作要求 (必读)\n- **全程开启屏幕录制**：点击下方的“开始录制”按钮，记录你利用 AI 工具（如 Trae Builder / Cursor Composer）编写代码、调试及运行的全过程。\n- **录屏文件上传**：任务完成后停止录制并保存视频，作为后续老师人工评估（AI 驱动效率、逻辑正确性、安全意识）的唯一凭证。\n\n### 评分标准 (60分)\n- **过程评估 (30分)**：通过录屏评估 Prompt 质量、任务拆解及 AI 纠错能力。\n- **技术实现 (20分)**：代码结构清晰度、JDBC 安全实践、JSP 页面渲染正确性。\n- **合规与安全 (10分)**：红线规则执行情况（如无硬编码、无注入风险）。"
   }
 ]

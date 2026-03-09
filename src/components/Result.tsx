@@ -3,9 +3,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-import { CheckCircle2, XCircle, RotateCcw, Award, AlertCircle, Share2, Trophy } from "lucide-react"
+import { CheckCircle2, XCircle, RotateCcw, Award, AlertCircle, Share2, Trophy, BrainCircuit, Zap } from "lucide-react"
 import { motion } from "framer-motion"
-import type { Question } from "@/types/quiz"
+import { QUIZ_CONSTANTS, type Question } from "@/types/quiz"
 
 interface ResultProps {
   score: number;
@@ -15,14 +15,34 @@ interface ResultProps {
 }
 
 export function Result({ score, answers, questions, onRestart }: ResultProps) {
-  const isPassed = score >= 80;
+  const isPassed = score >= QUIZ_CONSTANTS.PASSING_SCORE;
+
+  const theoryQuestions = questions.filter(q => q.type !== 'coding');
+  const codingQuestions = questions.filter(q => q.type === 'coding');
+
+  const getTheoryCorrectCount = () => {
+    return theoryQuestions.filter(q => {
+      const userAns = answers[q.id] || [];
+      return userAns.length === q.answer.length && userAns.every(v => q.answer.includes(v));
+    }).length;
+  };
+
+  const isCodingFinished = () => {
+    const q = codingQuestions[0];
+    if (!q) return false;
+    const userAns = answers[q.id] || [];
+    return userAns.length > 0 && userAns[0] === 0;
+  };
+
+  const theoryScore = Math.round((getTheoryCorrectCount() / theoryQuestions.length) * QUIZ_CONSTANTS.THEORY_SCORE_WEIGHT);
+  const codingScore = isCodingFinished() ? QUIZ_CONSTANTS.PRACTICAL_SCORE_WEIGHT : 0;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-[#0f172a] text-slate-200 p-4 font-sans selection:bg-blue-500/30">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-200 p-4 font-sans selection:bg-blue-500/30">
       {/* Background decoration */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/10 blur-[120px]" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-[120px]" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500/10 blur-[120px]" />
       </div>
 
       <motion.div 
@@ -30,7 +50,7 @@ export function Result({ score, answers, questions, onRestart }: ResultProps) {
         animate={{ opacity: 1, scale: 1 }}
         className="w-full max-w-4xl z-10"
       >
-        <Card className="border-slate-800 bg-slate-900/50 backdrop-blur-xl shadow-2xl shadow-black/50 overflow-hidden">
+        <Card className="border-slate-700/50 bg-slate-800/40 backdrop-blur-xl shadow-2xl shadow-black/20 overflow-hidden">
           <CardHeader className={`text-center py-16 px-8 relative overflow-hidden ${isPassed ? "bg-emerald-500/10" : "bg-orange-500/10"}`}>
             <div className="absolute inset-0 opacity-10 pointer-events-none">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-from)_0%,_transparent_70%)] from-current" />
@@ -56,6 +76,20 @@ export function Result({ score, answers, questions, onRestart }: ResultProps) {
               <CardTitle className="text-5xl md:text-6xl font-black mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white to-slate-400">
                 {score} <span className="text-2xl font-medium text-slate-500">/ 100</span>
               </CardTitle>
+              <div className="flex flex-wrap justify-center gap-4 mb-8">
+                <Badge variant="outline" className="px-4 py-2 rounded-xl bg-blue-500/5 border-blue-500/20 text-blue-400 flex gap-2 items-center">
+                  <BrainCircuit size={14} /> 理论得分: {theoryScore} / 40
+                </Badge>
+                <Badge variant="outline" className="px-4 py-2 rounded-xl bg-emerald-500/5 border-emerald-500/20 text-emerald-400 flex gap-2 items-center">
+                  <Zap size={14} /> 实战得分: {codingScore} / 60
+                </Badge>
+              </div>
+              {codingScore > 0 && (
+                <div className="mb-8 p-4 rounded-xl bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm flex items-center gap-3 max-w-md mx-auto">
+                  <AlertCircle size={18} className="shrink-0" />
+                  <p className="text-left leading-tight">实战分值已计入预估总分，最终成绩需经老师审核您的录屏文件后确认。</p>
+                </div>
+              )}
               <CardDescription className="text-xl md:text-2xl font-bold text-slate-100">
                 {isPassed ? "评估通过：卓越的 AI 专家" : "评估未通过：仍需进修"}
               </CardDescription>
@@ -109,11 +143,11 @@ export function Result({ score, answers, questions, onRestart }: ResultProps) {
                             {userAnswers.length > 0 ? (
                               userAnswers.map(ansIdx => (
                                 <Badge key={ansIdx} variant="outline" className={`px-3 py-1 rounded-lg ${q.answer.includes(ansIdx) ? "border-emerald-500/30 text-emerald-400 bg-emerald-500/5" : "border-red-500/30 text-red-400 bg-red-500/5"}`}>
-                                  {q.options ? q.options[ansIdx] : (ansIdx === 0 ? "正确" : "错误")}
+                                  {q.type === 'coding' ? "任务已完成" : q.options ? q.options[ansIdx] : (ansIdx === 0 ? "正确" : "错误")}
                                 </Badge>
                               ))
                             ) : (
-                              <span className="text-red-400/60 italic text-sm">未回答</span>
+                              <span className="text-red-400/60 italic text-sm">未完成</span>
                             )}
                           </div>
                         </div>
@@ -122,7 +156,7 @@ export function Result({ score, answers, questions, onRestart }: ResultProps) {
                           <div className="flex flex-wrap gap-2">
                             {q.answer.map(ansIdx => (
                               <Badge key={ansIdx} className="px-3 py-1 rounded-lg bg-blue-500/10 text-blue-400 border-blue-500/20">
-                                {q.options ? q.options[ansIdx] : (ansIdx === 0 ? "正确" : "错误")}
+                                {q.type === 'coding' ? "任务应完成" : q.options ? q.options[ansIdx] : (ansIdx === 0 ? "正确" : "错误")}
                               </Badge>
                             ))}
                           </div>

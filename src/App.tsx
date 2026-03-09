@@ -3,15 +3,17 @@ import { useQuiz } from '@/hooks/useQuiz'
 import { Welcome } from '@/components/Welcome'
 import { Quiz } from '@/components/Quiz'
 import { Result } from '@/components/Result'
+import { TeacherReview } from '@/components/TeacherReview'
 
 function App() {
-  const [isStarted, setIsStarted] = useState(false);
+  const [view, setView] = useState<'normal' | 'review'>('normal');
   const { 
     state, 
     currentQuestion, 
     totalQuestions, 
     progress, 
     handleAnswer, 
+    handleSelectRole,
     nextQuestion, 
     prevQuestion, 
     resetQuiz,
@@ -19,16 +21,27 @@ function App() {
   } = useQuiz();
 
   const handleStart = () => {
-    setIsStarted(true);
+    // Role is already selected in Welcome
   };
 
   const handleRestart = () => {
-    setIsStarted(false);
     resetQuiz();
   };
 
-  if (!isStarted) {
-    return <Welcome onStart={handleStart} totalQuestions={totalQuestions} />;
+  if (view === 'review') {
+    return <TeacherReview onBack={() => setView('normal')} />;
+  }
+
+  if (!state.selectedRole) {
+    return (
+      <Welcome 
+        onStart={handleStart} 
+        totalQuestions={totalQuestions} 
+        selectedRole={state.selectedRole}
+        onSelectRole={handleSelectRole}
+        onEnterReview={() => setView('review')}
+      />
+    );
   }
 
   if (!currentQuestion && !state.isFinished) {
@@ -53,6 +66,7 @@ function App() {
       currentIndex={state.currentQuestionIndex}
       totalQuestions={totalQuestions}
       progress={progress}
+      timeRemaining={state.timeRemaining}
       onAnswer={(indices) => handleAnswer(currentQuestion.id, indices)}
       onNext={nextQuestion}
       onPrev={prevQuestion}
